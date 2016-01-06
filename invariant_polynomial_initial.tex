@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+
+\setlength{\oddsidemargin}{0.5in}
+\setlength{\evensidemargin}{0.5in}
+\setlength{\topmargin}{0in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\topskip}{0in}
+\setlength{\textheight}{8.5in}
+\setlength{\textwidth}{5.3in}
+\setlength{\footskip}{1in}
+
+\usepackage{latexsym}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{graphics, color}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{lemma}{Lemma}[section]
+
+\newtheorem{example}{Example}[section]
+
+\newtheorem{proposition}{Proposition}[section]
+
+\newtheorem{theorem}{Theorem}[section]
+
+\newtheorem{claim}{Claim}[section]
+
+\newtheorem{corollary}{Corollary}[section]
+\begin{document}
+
+\section*{Initial Formula}
+
+I wanted to do this in LaTex instead of just typing it into the email, for easiness in reading(and also to brush up my Tex skills, which I haven't used for a few weeks now).
+
+We will begin with the complex function, G(z).
+
+\[ 
+	G(z) = z^n = (x + iy)^n 
+\]
+
+Expanding this further, we see:
+
+\[
+       	G(z) =  \binom{n}{0} x^ny^0i^0 +\binom{n}{1} x^{n-1}y^1i^1 + \binom{n}{2} x^{n-2}y^2i^2 + \ldots + \binom{n}{n} x^0y^ni^n 
+\]
+
+
+Then, for the polynomial $R(x,y)$, we have that:
+
+\[
+	R(x,y) = \binom{n}{0}x^n - \binom{n}{2}x^{n-2}y^2 + \binom{n}{4}x^{n-4}y^4 - \binom{n}{6}x^{n-6}y^6 + \ldots \space \binom{n}{2j}x^{n-2j}y^{2j}
+\]
+
+       	 With $j = \floor{\frac{n}{2}} \in \mathbb{N}$ 
+
+A note here, I'm not quite sure how to notate the end of the polynomial. My aim is to show that the polynomial Isn't endless, and that the exponent on x is greater than or equal to 0, as per the definition of a polynomial. The issue is that whether the last term of the polynomial has $x^1$ or $x^0$ is dependent on whether n is even or odd. I tried to use the notation with the floor function defining a value for j, and hopefully that's obvious, but is there a better way for me to notate this that I'm missing? 
+
+The polynomial $I(x,y)$ is similar, it's the leftover from the original complex function:
+
+\[
+	I(x,y) = \binom{n}{1}x^{n-1}y^1 - \binom{n}{3}x^{n-3}y^3 + \binom{n}{5}x^{n-5}y^5 - \binom{n}{7}x^{n-7}y^7 + \ldots \space \binom{n}{2k-1}x^{n-2k+1}y^{2k+1}
+\]
+	With $k = \ceil[Bigg]{\frac{n}{2}} $  \\
+The same problem exists here, where I don't quite know how to notate the final term. I'm also fairly certain that, if not for both, then at least for $I(x,y)$, the exponents on $x$ and $y$ are incorrect by 1, again simply because I couldn't think of a good way to notate it(maybe because of the time of night).
+
+Are these polynomials correct? Are these more invariants? Also, are these a finite number of these invariant polynomials for A? Should I also be trying to prove that I have all of them or something similar to that, or is it too early? 
+
+
+
+
+
+\end{document}
