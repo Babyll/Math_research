@@ -1,0 +1,138 @@
+\documentclass{amsart}
+\setlength{\oddsidemargin}{0.5in}
+\setlength{\evensidemargin}{0.5in}
+\setlength{\topmargin}{0in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\topskip}{0in}
+\setlength{\textheight}{8.5in}
+\setlength{\textwidth}{5.3in}
+\setlength{\footskip}{1in}
+
+
+
+\usepackage{latexsym}
+\usepackage{amsfonts,amssymb,amsmath}
+\usepackage{graphics, color}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{lemma}{Lemma}[section]
+
+\newtheorem{example}{Example}[section]
+
+\newtheorem{proposition}{Proposition}[section]
+
+\newtheorem{theorem}{Theorem}[section]
+
+\newtheorem{claim}{Claim}[section]
+
+\newtheorem{corollary}{Corollary}[section]
+\begin{document}
+
+\title{Thoughts on Invariant Polynomials}
+\author{Saad Khalid}
+\date{January 8\textsuperscript{th}, 2015}
+\maketitle
+
+\section*{Looking at R(x,y) and I(x,y)}
+\[
+\begin{array}{c|ccccc}
+	n	&	2	&	3	&	4	&	5	&	6 \\
+	R	&	0	&	1	&	0	&	1	&	0\\ 
+	I	&	1	&	0	&	1	&	0	&	1\\
+	j	&	1	&	1	&	2	&	2	&	3\\
+	k	&	1	&	2	&	2	&	3	&	3\\
+
+\end{array}
+\]
+
+In the above chart, R represents the exponent of x on the last term in $R(x,y)$, and I served that purpose for $I(x,y)$. $j = \floor{\frac{n}{2}}$, and $k = \ceil{\frac{n}{2}}$. \\
+
+Using the above information, we can see that $k = n - j$. Thus, we can rewrite our previous expressions for $R(x,y)$ and $I(x,y)$: \\
+
+\[
+	R(x,y) = \binom{n}{0}(-1)^0x^n + \binom{n}{2}(-1)^1x^{n-2}y^2 + \binom{n}{4}(-1)^2x^{n-4}y^4 + \binom{n}{6}(-1)^3x^{n-6}y^6 + \cdots + \space \binom{n}{2j}(-1)^jx^{n-2j}y^{2j}
+\]
+
+\[
+	I(x,y) = \binom{n}{1}(-1)^0x^{n-1}y^1 + \binom{n}{3}(-1)^1x^{n-3}y^3 + \binom{n}{5}(-1)^2x^{n-5}y^5  + \cdots \space + \binom{n}{2k-1}(-1)^jx^{2j+1-n}y^{2j+1}
+\]
+
+
+
+This can also be written as:
+\[
+	R(x,y) = \sum_{i=1}^j \binom{n}{2i}(-1)^{i}x^{n-2i}y^{2i}
+\]
+
+I still need to insert the sum function for $I(x,y)$. \\
+
+I spent way too long trying to get the perfect form for the exponents in $R(x,y)$ and $I(x,y)$, and it's late at night so I have to summarize the rest of my thoughts just so I can get them out to you, and I can type them up more completely later. \\
+So, my first realization was that $ g(z) = \bar{z}^n$ is also an A-invariant in $z$, however its constituent Real polynomials are identical/reducible to the $R(x,y)$ and $I(x,y)$ that we previously found. \\
+
+So, we know that so far, the functions that are A-invariant in $z$ are $z\bar{z}$, $z^n$, and $\bar{z}^n$. I also realized that we can add these to each other, multiply them by each other or by constants, or raise them to any positive power, and the resulting function will be A-invariant. This means that there is an infinite number of polynomials in $z$ that can be made with combinations of these 3 things, however I think if we looked at the Real polynomials composing the complex function, they would ultimately still be reducible to our original $R$ and $I$ functions. Is this at all true? Later, I think I'm going to start by trying to prove that all the invariants are reducible to our original R and I functions, if that sounds like a good idea. 
+
+\section*{Using Polar Coordinates}
+
+I tried using polar coordinates to see try and see what's happening behind the scenes a little bit. Here is the math that was involved:
+\[ \begin{bmatrix}
+		\cos\frac{2j\pi}{n} & -\sin\frac{2j\pi}{n} \\
+		\\	
+		\sin\frac{2j\pi}{n} & \cos\frac{2j\pi}{n}
+	\end{bmatrix} 
+	\begin{bmatrix}
+		x \\
+		\\
+		y
+	\end{bmatrix} 
+\]
+\\
+\[
+	=
+	\begin{bmatrix}
+		x\cos\frac{2j\pi}{n} - y\sin\frac{2j\pi}{n} \\
+		\\
+		x\sin\frac{2j\pi}{n} + y\cos\frac{2j\pi}{n}
+	\end{bmatrix}
+\]
+Now if we left $\theta = \frac{2j\pi}{n}$
+\[
+	=
+	\begin{bmatrix}
+		x\cos\theta - y\sin\theta \\
+		\\
+		x\sin\theta + y\cos\theta 
+	\end{bmatrix}
+\]
+Converting this now to complex form
+\[
+	=
+	\begin{bmatrix}
+		\frac{x^2}{r} - \frac{y^2}{r} \\
+		\\
+		\frac{xy}{r} + \frac{xy}{r}
+	\end{bmatrix}
+\]
+\[
+	=
+	\begin{bmatrix}
+	\frac{x^2-y^2}{r} \\
+	\\
+	\frac{2xy}{r}
+	\end{bmatrix}
+\]
+\\
+So, now I think that I need to find $f$ such that $f(x,y) =  f\left(\frac{x^2-y^2}{\sqrt{x^2+y^2}}, \frac{2xy}{\sqrt{x^2+y^2}} \right) $ \\
+I also put it in complex form, and tried a couple other algebraic manipulations, but I haven't fully figured out what I'm going to do with this. My first thought was to find the inverse of $\frac{x^2-y^2}{\sqrt{x^2+y^2}}$ in terms of x, which is $\sqrt{x\sqrt{x^2+y^2}+y^2}$, and I did the same thing for $y$ and $\frac{2xy}{\sqrt{x^2+y^2}}$. But, I don't think that really helps me. Does any of this make sense at all? 
+
+
+
+\end{document}
